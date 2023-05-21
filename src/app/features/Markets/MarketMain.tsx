@@ -1,25 +1,27 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { Divider, List } from 'react-native-paper';
 import { TabView, SceneMap } from 'react-native-tab-view';
 
 function IndexRow(title: string, price: number, delta: number) {
   return (
-    <View style={{ alignItems: 'center' }}>
-      <Text style={styles.titleText}>{title}</Text>
-      <Text style={styles.priceText}>{price + ' USD'}</Text>
-      <Text style={styles.deltaText}>{delta + ' (-0.17%)'}</Text>
-      <Divider></Divider>
-    </View>
+    <TouchableOpacity>
+      <View style={{ alignItems: 'center' }}>
+        <Text style={styles.titleText}>{title}</Text>
+        <Text style={styles.priceText}>{price + ' USD'}</Text>
+        <Text style={styles.deltaText}>{delta + ' (-0.17%)'}</Text>
+        <Divider></Divider>
+      </View>
+    </TouchableOpacity>
   );
 }
 
 function MarketView() {
   return (
     <View>
-      { IndexRow('NASDAQ', 12179.55, -77.36) }
-      { IndexRow('NASDAQ', 12179.55, -77.36) }
-      { IndexRow('NASDAQ', 12179.55, -77.36) }
+      {IndexRow('NASDAQ', 12179.55, -77.36)}
+      {IndexRow('NASDAQ', 12179.55, -77.36)}
+      {IndexRow('NASDAQ', 12179.55, -77.36)}
     </View>
   );
 }
@@ -31,7 +33,7 @@ const renderScene = SceneMap({
   Asia: MarketView,
 });
 
-export default function MarketMain() {
+export default function MarketMain({ navigation }) {
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);
