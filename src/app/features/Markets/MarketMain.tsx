@@ -1,78 +1,58 @@
 import * as React from 'react';
-import { Button, RefreshControl, SafeAreaView, Text, View, StyleSheet, ScrollView, Dimensions } from 'react-native';
-import SegmentedControl from '@react-native-segmented-control/segmented-control';
-import Divider from 'yd-react-native-divider';
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Divider, List } from 'react-native-paper';
+import { TabView, SceneMap } from 'react-native-tab-view';
 
-interface Props {
-  selectedIndex: number,
+function IndexRow(title: string, price: number, delta: number) {
+  return (
+    <View style={{ alignItems: 'center' }}>
+      <Text style={styles.titleText}>{title}</Text>
+      <Text style={styles.priceText}>{price + ' USD'}</Text>
+      <Text style={styles.deltaText}>{delta + ' (-0.17%)'}</Text>
+      <Divider></Divider>
+    </View>
+  );
 }
 
-// const [refreshing, setRefreshing] = React.useState(false);
+function MarketView() {
+  return (
+    <View>
+      { IndexRow('NASDAQ', 12179.55, -77.36) }
+      { IndexRow('NASDAQ', 12179.55, -77.36) }
+      { IndexRow('NASDAQ', 12179.55, -77.36) }
+    </View>
+  );
+}
 
-//   const onRefresh = React.useCallback(() => {
-//     setRefreshing(true);
-//     setTimeout(() => {
-//       setRefreshing(false);
-//     }, 2000);
-//   }, []);
+const renderScene = SceneMap({
+  UK: MarketView,
+  Europe: MarketView,
+  US: MarketView,
+  Asia: MarketView,
+});
 
-const {width, height} = Dimensions.get('window');
-const segmentHeight = 44;
+export default function MarketMain() {
+  const layout = useWindowDimensions();
 
-export default class MarketMain extends React.Component<Props> {
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'UK', title: 'UK' },
+    { key: 'Europe', title: 'Europe' },
+    { key: 'US', title: 'US' },
+    { key: 'Asia', title: 'Asia' },
+  ]);
 
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      selectedIndex: 0,
-      title: "Pull down to refresh",
-      isRefreshing: false,
-    }
-  }
-
-  _gotoDetial() {
-
-  }
-
-  _quoteSection(title: string, price: number, delta: number) {
-    return (
-      <View style={{ height: (height - segmentHeight * 3) / 3, alignItems: 'center' }}>
-        <Text style={styles.titleText}>{title}</Text>
-        <Text style={styles.priceText}>{price + ' USD'}</Text>
-        <Text style={styles.deltaText}>{delta + ' (-0.17%)'}</Text>
-        <Divider width={2}></Divider>
-      </View>
-    );
-  }
-
-  render(): React.ReactNode {
-    return (
-      <SafeAreaView style={styles.container}>
-        <SegmentedControl
-          style={{height: segmentHeight}}
-          values={['UK', 'Europe', 'US', 'Asia']}
-          selectedIndex={ this.state.selectedIndex }
-          onChange={(event) => {
-            this.setState({selectedIndex: event.nativeEvent.selectedSegmentIndex});
-          }}
-        />
-        <ScrollView style={{ marginTop: 24 }}>
-            { this._quoteSection('NASDAQ', 12179.55, -77.36) }
-            { this._quoteSection('S&P', 12179.55, -77.36) }
-            { this._quoteSection('DJIA', 12179.55, -77.36) }
-          </ScrollView>
-      </SafeAreaView>
-      
-      
-    );
-  }
+  return (
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={{ width: layout.width }}
+    />
+  );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-  },
   titleText: {
     color: '#0070AA',
     fontSize: 18,
@@ -92,3 +72,4 @@ const styles = StyleSheet.create({
     marginBottom: 10
   }
 });
+
