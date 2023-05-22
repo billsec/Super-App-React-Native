@@ -5,22 +5,24 @@ import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 import { LightTheme, DarkTheme } from './../../Theme';
 
+const mockData = [[{'symbol' : 'NASDAQ'}],[],[],[]]
+
 function IndexRow(title: string, price: number, delta: number) {
   return (
     <TouchableOpacity>
-      <View style={{ alignItems: 'center' }}>
+      <View style={{ alignItems: 'center', margin: LightTheme.spacing.medium }}>
         <Text style={styles.titleText}>{title}</Text>
         <Text style={styles.priceText}>{price + ' USD'}</Text>
         <Text style={styles.deltaText}>{delta + ' (-0.17%)'}</Text>
-        <Divider></Divider>
       </View>
+      <Divider/>
     </TouchableOpacity>
   );
 }
 
 function MarketView() {
   return (
-    <View>
+    <View style={{flex: 1, justifyContent: 'space-between', alignItems: 'stretch', backgroundColor: LightTheme.lightPalette.background, paddingVertical: LightTheme.spacing.large}}>
       {IndexRow('NASDAQ', 12179.55, -77.36)}
       {IndexRow('NASDAQ', 12179.55, -77.36)}
       {IndexRow('NASDAQ', 12179.55, -77.36)}
@@ -37,6 +39,7 @@ const renderScene = SceneMap({
 
 export default function MarketMain({ navigation }) {
   const layout = useWindowDimensions();
+  const navi = navigation;
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
@@ -68,7 +71,7 @@ export default function MarketMain({ navigation }) {
 
 const styles = StyleSheet.create({
   titleText: {
-    color: '#0070AA',
+    color: LightTheme.lightPalette.mainBlue,
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
