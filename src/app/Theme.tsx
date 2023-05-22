@@ -45,10 +45,16 @@ export const fontWeight = {
 
 export const lightPalette = {
     background: '#FFFFFF',
+    mainBlue: '#016FAD',
+    mainOrange: '#FF9B19',
+    primaryText: '#000000',
 }
 
 export const dartPalette = {
     background: '#000000',
+    mainBlue: '#016FAD',
+    mainOrange: '#FF9B19',
+    primaryText: '#FFFFFF',
 }
 
 export const LightTheme = {

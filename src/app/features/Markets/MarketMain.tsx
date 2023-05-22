@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { Divider, List } from 'react-native-paper';
-import { TabView, SceneMap } from 'react-native-tab-view';
+import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+
+import { LightTheme, DarkTheme } from './../../Theme';
 
 function IndexRow(title: string, price: number, delta: number) {
   return (
@@ -44,8 +46,18 @@ export default function MarketMain({ navigation }) {
     { key: 'Asia', title: 'Asia' },
   ]);
 
+  const renderTabBar = props => (
+    <TabBar
+      {...props}
+      labelStyle={{ color: LightTheme.lightPalette.primaryText }}
+      indicatorStyle={{ backgroundColor: LightTheme.lightPalette.mainBlue }}
+      style={{ backgroundColor: LightTheme.lightPalette.background }}
+    />
+  );
+
   return (
     <TabView
+      renderTabBar={renderTabBar}
       navigationState={{ index, routes }}
       renderScene={renderScene}
       onIndexChange={setIndex}

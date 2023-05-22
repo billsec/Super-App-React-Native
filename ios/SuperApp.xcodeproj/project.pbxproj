@@ -14,6 +14,10 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-SuperApp-SuperAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-SuperApp-SuperAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		93AA0DC52A1BAF690045246B /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93AA0DB52A1BAF690045246B /* MaterialCommunityIcons.ttf */; };
+		93AA0DC62A1BAF690045246B /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93AA0DB62A1BAF690045246B /* AntDesign.ttf */; };
+		93AA0DC82A1BAF690045246B /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93AA0DB82A1BAF690045246B /* Ionicons.ttf */; };
+		93AA0DCF2A1BAF690045246B /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93AA0DBF2A1BAF690045246B /* MaterialIcons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +47,10 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-SuperApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SuperApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-SuperApp-SuperAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperApp-SuperAppTests.release.xcconfig"; path = "Target Support Files/Pods-SuperApp-SuperAppTests/Pods-SuperApp-SuperAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		93AA0DB52A1BAF690045246B /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		93AA0DB62A1BAF690045246B /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
+		93AA0DB82A1BAF690045246B /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
+		93AA0DBF2A1BAF690045246B /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -86,6 +94,7 @@
 		13B07FAE1A68108700A75B9A /* SuperApp */ = {
 			isa = PBXGroup;
 			children = (
+				93AA0DAF2A1BAF690045246B /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -135,6 +144,18 @@
 				00E356EE1AD99517003FC87E /* SuperAppTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		93AA0DAF2A1BAF690045246B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				93AA0DB52A1BAF690045246B /* MaterialCommunityIcons.ttf */,
+				93AA0DB62A1BAF690045246B /* AntDesign.ttf */,
+				93AA0DB82A1BAF690045246B /* Ionicons.ttf */,
+				93AA0DBF2A1BAF690045246B /* MaterialIcons.ttf */,
+			);
+			name = Fonts;
+			path = "../node_modules/react-native-vector-icons/Fonts";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -242,7 +263,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93AA0DC82A1BAF690045246B /* Ionicons.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				93AA0DC62A1BAF690045246B /* AntDesign.ttf in Resources */,
+				93AA0DCF2A1BAF690045246B /* MaterialIcons.ttf in Resources */,
+				93AA0DC52A1BAF690045246B /* MaterialCommunityIcons.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

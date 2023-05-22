@@ -2,7 +2,10 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/AntDesign';
 
+import Routes from './constant/Routes';
+import { LightTheme, DarkTheme } from './Theme';
 import AccountMain from './features/Accounts/AccountMain';
 import Trade from './features/Trade/Trade';
 import MarketMain from './features/Markets/MarketMain';
@@ -14,8 +17,8 @@ const Stack = createNativeStackNavigator();
 function Accounts() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Accounts" component={AccountMain} />
-      <Stack.Screen name="Trade" component={Trade} />
+      <Stack.Screen name={Routes.Accounts} component={AccountMain} />
+      <Stack.Screen name={Routes.Trade} component={Trade} />
     </Stack.Navigator>
   );
 }
@@ -23,8 +26,8 @@ function Accounts() {
 function Markets({ navigation }) {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Markets" component={MarketMain} />
-      <Stack.Screen name="Detail" component={MarketDetail} />
+      <Stack.Screen name={Routes.Markets} component={MarketMain} />
+      <Stack.Screen name={Routes.MarketsDetail} component={MarketDetail} />
     </Stack.Navigator>
   );
 }
@@ -32,10 +35,27 @@ function Markets({ navigation }) {
 function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarActiveTintColor: LightTheme.lightPalette.mainBlue,
+          tabBarInactiveTintColor: LightTheme.lightPalette.primaryText,
+        }}
+      >
         <Tab.Group screenOptions={{ headerShown: false }}>
-          <Tab.Screen name="AccountsRoot" component={Accounts} options={{ title: 'Accounts' }} />
-          <Tab.Screen name="MarketsRoot" component={Markets} options={{ title: 'Markets' }} />
+          <Tab.Screen name={Routes.AccountsTab} component={Accounts} options={{
+            tabBarLabel: 'Accounts',
+            tabBarIcon: () => (
+              <Icon name="home" size={24} />
+            ),
+          }}
+          />
+          <Tab.Screen name={Routes.MarketsTab} component={Markets} options={{
+            tabBarLabel: 'Markets',
+            tabBarIcon: () => (
+              <Icon name="linechart" size={24} />
+            ),
+          }}
+          />
         </Tab.Group>
       </Tab.Navigator>
     </NavigationContainer>
