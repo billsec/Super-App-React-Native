@@ -9,6 +9,7 @@ import { LightTheme, DarkTheme } from './Theme';
 import AccountMain from './features/Accounts/AccountMain';
 import AccountDetail from './features/Accounts/AccountDetail';
 import Trade from './features/Trade/Trade';
+import Analysis from './features/Accounts/Analysis';
 import MarketMain from './features/Markets/MarketMain';
 import MarketDetail from './features/Markets/MarketDetail';
 
@@ -20,6 +21,8 @@ function Accounts() {
     <Stack.Navigator>
       <Stack.Screen name={Routes.Accounts} component={AccountMain} />
       <Stack.Screen name={Routes.AccountDetail} component={AccountDetail} />
+      <Stack.Screen name={Routes.Analysis} component={Analysis} />
+      <Stack.Screen name={Routes.Trade} component={Trade} />
     </Stack.Navigator>
   );
 }
