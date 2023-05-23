@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Routes from './constant/Routes';
 import { LightTheme, DarkTheme } from './Theme';
 import AccountMain from './features/Accounts/AccountMain';
+import AccountDetail from './features/Accounts/AccountDetail';
 import Trade from './features/Trade/Trade';
 import MarketMain from './features/Markets/MarketMain';
 import MarketDetail from './features/Markets/MarketDetail';
@@ -18,7 +19,7 @@ function Accounts() {
   return (
     <Stack.Navigator>
       <Stack.Screen name={Routes.Accounts} component={AccountMain} />
-      <Stack.Screen name={Routes.Trade} component={Trade} />
+      <Stack.Screen name={Routes.AccountDetail} component={AccountDetail} />
     </Stack.Navigator>
   );
 }

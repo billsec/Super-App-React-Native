@@ -47,14 +47,31 @@ export const lightPalette = {
     background: '#FFFFFF',
     mainBlue: '#016FAD',
     mainOrange: '#FF9B19',
+    mainGreen: '#82C823',
+    mainGray: '#20242B',
+    mainBackgroundGray: '#404955',
+    mainLightGray: '#DCDEE1',
     primaryText: '#000000',
+    secondaryText: '#666666',
+    revertColorText: '#FFFFFF',
+    divider: '#CCCCCC',
+    downRed: '#DF1515',
+    upGreen: '#368727',
 }
 
 export const dartPalette = {
     background: '#000000',
     mainBlue: '#016FAD',
     mainOrange: '#FF9B19',
+    mainGreen: '#82C823',
+    mainGray: '#20242B',
+    mainBackgroundGray: '#404955',
+    mainLightGray: '#DCDEE1',
     primaryText: '#FFFFFF',
+    secondaryText: '#888888',
+    divider: '#666666',
+    downRed: '#F90000',
+    upGreen: '#6ABF4B',
 }
 
 export const LightTheme = {
