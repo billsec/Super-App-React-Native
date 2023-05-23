@@ -68,7 +68,7 @@ export default function AccountMain({ navigation }) {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: LightTheme.lightPalette.background }} >
+    <View style={{ flex: 1, backgroundColor: LightTheme.lightPalette.background, paddingVertical: spacing.small }} >
       <FlatList data={mockData}
         renderItem={
           ({ item }) =>

@@ -1,12 +1,187 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native'
 import React from 'react'
+import { Divider } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import { LineChart } from 'react-native-chart-kit';
+
+import { LightTheme, spacing, fontSize, fontWeight } from './../../Theme';
+import Routes from '../../constant/Routes';
 
 export default function MarketDetail() {
+  const layout = useWindowDimensions();
+
+  const indexRow = (title: string, price: number, delta: number) => {
+    return (
+      <View>
+        <View style={{ alignItems: 'center', gap: spacing.small, margin: spacing.large }}>
+          <View style={{ flexDirection: 'row', gap: spacing.smaller, alignItems: 'center' }}>
+            <Text style={styles.titleText}>{title}</Text>
+            <Icon name='chevron-down' size={22} color={LightTheme.lightPalette.mainBlue}></Icon>
+          </View>
+          <Text style={styles.priceText}>{price + ' USD'}</Text>
+          <Text style={styles.deltaText}>{delta + ' (-0.17%)'}</Text>
+        </View>
+        <Divider />
+      </View>
+    );
+  }
+
+  const timeRow = () => {
+    return (
+      <View style={{ flexDirection: 'row', paddingVertical: spacing.larger, paddingHorizontal: spacing.small }}>
+        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: spacing.smaller }}>
+          <View style={styles.circle}></View>
+          <Text style={styles.secondaryText}>Market closed</Text>
+        </View>
+        <Text style={[styles.secondaryText, { flex: 1 }]}>Last updated at 16:00 on 10/05/23</Text>
+      </View>
+    )
+  }
+
+  const previousTimeRow = () => {
+    return (
+      <View style={{ flexDirection: 'row', paddingVertical: spacing.medium, paddingHorizontal: spacing.small, justifyContent:'space-between', alignItems:'center' }}>
+        <Text style={[styles.secondaryText, { flex: 1, fontWeight: fontWeight.bold }]}>Previous close</Text>
+        <Text style={[styles.secondaryText, { flex: 1 }]}>19867.58</Text>
+      </View>
+    )
+  }
+
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'oneDay', title: '1D' },
+    { key: 'oneWeek', title: '1W' },
+    { key: 'oneMonth', title: '1M' },
+    { key: 'sixMonth', title: '6M' },
+    { key: 'oneYear', title: '1Y' },
+    { key: 'fiveYear', title: '5Y' },
+  ]);
+
+  const chartView = () => {
+    const chartHeight = 280;
+    return (
+      <View style={{justifyContent: 'center', alignItems:'center', borderColor: LightTheme.lightPalette.divider, borderWidth: 1, paddingVertical: spacing.small, marginHorizontal: spacing.small}}>
+        <LineChart
+        data={{
+          labels: ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
+          datasets: [
+            {
+              data: [
+                Math.random() * 12100,
+                Math.random() * 12100,
+                Math.random() * 12100,
+                Math.random() * 12100,
+                Math.random() * 12100,
+                Math.random() * 12100,
+                Math.random() * 12100,
+                Math.random() * 12100,
+                Math.random() * 12100,
+                Math.random() * 12100,
+                Math.random() * 12100,
+                Math.random() * 12100
+              ]
+            }
+          ]
+        }}
+        width={layout.width - spacing.small * 2 - 16}
+        height={chartHeight}
+        withVerticalLines={false}
+        chartConfig={{
+          backgroundColor: "#FFFFFF",
+          backgroundGradientFrom: "#FFFFFF",
+          backgroundGradientTo: "#FFFFFF",
+          fillShadowGradientFrom: LightTheme.lightPalette.mainBlue,
+          fillShadowGradientOpacity: 1,
+          fillShadowGradientTo: LightTheme.lightPalette.mainBlue,
+          color: (opacity = 1) => `rgba(1, 1, 1, ${opacity})`,
+          labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+          propsForDots: {
+            r: "0",
+            strokeWidth: "0",
+          }
+        }}
+      />
+      <Text style={{color: LightTheme.lightPalette.secondaryText}}>X axis - Chosen time period</Text>
+      <Text style={{color: LightTheme.lightPalette.secondaryText}}>Y axis - Index price</Text>
+      </View>
+    );
+  }
+
+  const renderScene = SceneMap({
+    oneDay: chartView,
+    oneWeek: chartView,
+    oneMonth: chartView,
+    sixMonth: chartView,
+    oneYear: chartView,
+    fiveYear: chartView,
+  });
+
+  const renderTabBar = props => (
+    <TabBar
+      {...props}
+      labelStyle={{ color: LightTheme.lightPalette.primaryText }}
+      indicatorStyle={{ backgroundColor: LightTheme.lightPalette.mainBlue }}
+      style={{ backgroundColor: LightTheme.lightPalette.background }}
+    />
+  );
+
+  const chartTitleView = () => {
+    return (
+      <TabView
+        renderTabBar={renderTabBar}
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width }}
+      />
+    )
+  }
+
   return (
-    <View>
-      <Text>MarketDetail</Text>
-    </View>
+    <ScrollView style={{ backgroundColor: LightTheme.lightPalette.background }}>
+      {indexRow('NASDAQ', 12179.55, -77.36)}
+      {timeRow()}
+      <Divider></Divider>
+      <Text style={{ paddingVertical: spacing.larger, alignSelf: 'center', fontSize: fontSize.xl, fontWeight: fontWeight.semiBold }}>Index price by chosen time period</Text>
+      <Divider></Divider>
+      <View style={{ flexDirection: 'row', gap: spacing.smaller, paddingVertical: spacing.large, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={styles.secondaryText}>Rotate for chart</Text>
+        <Icon name='phone-rotate-landscape' size={18} color={LightTheme.lightPalette.secondaryText}></Icon>
+      </View>
+      <View style={{ paddingHorizontal: spacing.small }}>
+        {chartTitleView()}
+      </View>
+      {chartView()}
+      {previousTimeRow()}
+      <Divider></Divider>
+    </ScrollView>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  titleText: {
+    color: LightTheme.lightPalette.mainBlue,
+    fontSize: fontSize.lg,
+    fontWeight: fontWeight.bold,
+  },
+  priceText: {
+    color: LightTheme.lightPalette.primaryText,
+    fontSize: 38,
+    fontWeight: fontWeight.light,
+  },
+  deltaText: {
+    color: LightTheme.lightPalette.downRed,
+    fontSize: fontSize.lg,
+  },
+  secondaryText: {
+    color: LightTheme.lightPalette.secondaryText,
+    fontSize: fontSize.md,
+  },
+  circle: {
+    width: 12,
+    height: 12,
+    backgroundColor: LightTheme.lightPalette.downRed,
+    borderRadius: 6,
+  }
+})

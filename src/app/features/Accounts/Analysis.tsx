@@ -114,27 +114,28 @@ export default function Analysis() {
     }
 
     return (
-        <ScrollView>
-            <View style={{ backgroundColor: LightTheme.lightPalette.background }}>
-                {titleView()}
-                {tableTitleView('Asset Allocation')}
-                {pieChart()}
-                {sectionTitle()}
-                <FlatList style={{ paddingVertical: spacing.smaller }} data={mockData}
-                    renderItem={
-                        ({ item }) => rowView(item.name, item.population, item.color)
-                    }>
+        <View>
+            <ScrollView>
+                <View style={{ backgroundColor: LightTheme.lightPalette.background }}>
+                    {titleView()}
+                    {tableTitleView('Asset Allocation')}
+                    {pieChart()}
+                    {sectionTitle()}
+                    <FlatList style={{ paddingVertical: spacing.smaller }} data={mockData}
+                        renderItem={
+                            ({ item }) => rowView(item.name, item.population, item.color)
+                        }>
 
-                </FlatList>
-                <TouchableOpacity style={{ padding: spacing.small, flexDirection: 'row', alignItems: 'center' }}>
-                    <Text style={{ color: LightTheme.lightPalette.mainBlue, fontWeight: fontWeight.semiBold }}>Show long and short position</Text>
-                    <Icon name='chevron-down' size={22} color={LightTheme.lightPalette.mainBlue}></Icon>
-                </TouchableOpacity>
-                {tableTitleView('World Regions', false)}
-                {tableTitleView('Other', false)}
-            </View>
-        </ScrollView>
-
+                    </FlatList>
+                    <TouchableOpacity style={{ padding: spacing.small, flexDirection: 'row', alignItems: 'center' }}>
+                        <Text style={{ color: LightTheme.lightPalette.mainBlue, fontWeight: fontWeight.semiBold }}>Show long and short position</Text>
+                        <Icon name='chevron-down' size={22} color={LightTheme.lightPalette.mainBlue}></Icon>
+                    </TouchableOpacity>
+                    {tableTitleView('World Regions', false)}
+                    {tableTitleView('Other', false)}
+                </View>
+            </ScrollView>
+        </View>
     )
 }
 

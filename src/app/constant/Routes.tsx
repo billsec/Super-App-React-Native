@@ -1,4 +1,5 @@
 export default {
+    Login: 'Login',
     AccountsTab: 'AccountsTab',
     MarketsTab: 'MarketsTab',
     Accounts: 'Accounts',
