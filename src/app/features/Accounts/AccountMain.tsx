@@ -54,7 +54,7 @@ export default function AccountMain({ navigation }) {
   const listFooter = () => {
     return (
       <View style={{ marginVertical: spacing.smaller, marginHorizontal: spacing.small }}>
-        <Card onPress={() => navigation.push(Routes.AccountDetail)} contentStyle={{ backgroundColor: LightTheme.lightPalette.background }}>
+        <Card contentStyle={{ backgroundColor: LightTheme.lightPalette.background }}>
           <Card.Content style={{ borderColor: LightTheme.lightPalette.secondaryText, borderRadius: borderRadius.micro }}>
             <View style={{ gap: spacing.small }}>
               <Text style={styles.footerText}>Start planning for retirement with a Super SIPP</Text>
