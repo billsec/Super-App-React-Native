@@ -47,11 +47,10 @@ export default function AccountDetail({ route, navigation }) {
     }
 
     const indicatorView = (index: number) => {
-        const color: ColorValue = index == 0 ? LightTheme.lightPalette.mainBlue : LightTheme.lightPalette.revertColorText;
         return (
             <View style={{ flexDirection: 'row', justifyContent: 'center', gap: spacing.medium, paddingVertical: spacing.medium }}>
-                <TouchableOpacity style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: color }}></TouchableOpacity>
-                <TouchableOpacity style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: color }}></TouchableOpacity>
+                <TouchableOpacity style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: index == 0? LightTheme.lightPalette.mainBlue : LightTheme.lightPalette.revertColorText }}></TouchableOpacity>
+                <TouchableOpacity style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: index == 1? LightTheme.lightPalette.mainBlue : LightTheme.lightPalette.revertColorText }}></TouchableOpacity>
             </View>
         );
     }
