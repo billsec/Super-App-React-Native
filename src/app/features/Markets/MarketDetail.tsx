@@ -21,6 +21,14 @@ export default function MarketDetail() {
 
   const mockDataLabel = ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"];
 
+  function getRandomArr(n: number) {
+    let data: number[] = []
+    for (let i = 0; i < n; i++) {
+      data[i] = Math.random() * 12000
+    }
+    return data
+  }
+
   const indexRow = (title: string, price: number, delta: number) => {
     return (
       <View>
@@ -67,20 +75,7 @@ export default function MarketDetail() {
           labels: mockDataLabel,
           datasets: [
             {
-              data: [
-                Math.random() * 12100,
-                Math.random() * 12100,
-                Math.random() * 12100,
-                Math.random() * 12100,
-                Math.random() * 12100,
-                Math.random() * 12100,
-                Math.random() * 12100,
-                Math.random() * 12100,
-                Math.random() * 12100,
-                Math.random() * 12100,
-                Math.random() * 12100,
-                Math.random() * 12100
-              ]
+              data: getRandomArr(12)
             }
           ]
         }}
