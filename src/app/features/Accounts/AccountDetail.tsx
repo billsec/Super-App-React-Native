@@ -3,7 +3,7 @@ import React from 'react'
 import { Button, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { LightTheme, spacing, fontSize, fontWeight, borderRadius } from './../../Theme';
+import { LightTheme, spacing, fontSize, fontWeight } from './../../Theme';
 import Routes from '../../constant/Routes';
 
 

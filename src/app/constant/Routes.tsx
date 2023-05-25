@@ -1,7 +1,7 @@
 export default {
-    Login: 'Login',
     AccountsTab: 'AccountsTab',
     MarketsTab: 'MarketsTab',
+    Login: 'Login',
     Accounts: 'Accounts',
     AccountDetail: 'AccountDetail',
     Analysis: 'Analysis',

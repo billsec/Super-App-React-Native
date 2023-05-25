@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
 import React from 'react'
-import { Divider, List, Card } from 'react-native-paper';
+import { Card } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import { LightTheme, spacing, fontSize, fontWeight, borderRadius } from './../../Theme';

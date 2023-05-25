@@ -6,10 +6,20 @@ import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import { LineChart } from 'react-native-chart-kit';
 
 import { LightTheme, spacing, fontSize, fontWeight } from './../../Theme';
-import Routes from '../../constant/Routes';
 
 export default function MarketDetail() {
   const layout = useWindowDimensions();
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'oneDay', title: '1D' },
+    { key: 'oneWeek', title: '1W' },
+    { key: 'oneMonth', title: '1M' },
+    { key: 'sixMonth', title: '6M' },
+    { key: 'oneYear', title: '1Y' },
+    { key: 'fiveYear', title: '5Y' },
+  ]);
+
+  const mockDataLabel = ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"];
 
   const indexRow = (title: string, price: number, delta: number) => {
     return (
@@ -48,23 +58,13 @@ export default function MarketDetail() {
     )
   }
 
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'oneDay', title: '1D' },
-    { key: 'oneWeek', title: '1W' },
-    { key: 'oneMonth', title: '1M' },
-    { key: 'sixMonth', title: '6M' },
-    { key: 'oneYear', title: '1Y' },
-    { key: 'fiveYear', title: '5Y' },
-  ]);
-
   const chartView = () => {
     const chartHeight = 280;
     return (
       <View style={{justifyContent: 'center', alignItems:'center', borderColor: LightTheme.lightPalette.divider, borderWidth: 1, paddingVertical: spacing.small, marginHorizontal: spacing.small}}>
         <LineChart
         data={{
-          labels: ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
+          labels: mockDataLabel,
           datasets: [
             {
               data: [
@@ -88,9 +88,9 @@ export default function MarketDetail() {
         height={chartHeight}
         withVerticalLines={false}
         chartConfig={{
-          backgroundColor: "#FFFFFF",
-          backgroundGradientFrom: "#FFFFFF",
-          backgroundGradientTo: "#FFFFFF",
+          backgroundColor: "white",
+          backgroundGradientFrom: "white",
+          backgroundGradientTo: "white",
           fillShadowGradientFrom: LightTheme.lightPalette.mainBlue,
           fillShadowGradientOpacity: 1,
           fillShadowGradientTo: LightTheme.lightPalette.mainBlue,

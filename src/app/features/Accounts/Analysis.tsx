@@ -1,11 +1,10 @@
 import { ColorValue, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Button, Divider } from 'react-native-paper';
+import { Divider } from 'react-native-paper';
 import { PieChart } from 'react-native-chart-kit';
 
 import { LightTheme, spacing, fontSize, fontWeight, borderRadius } from './../../Theme';
-import Routes from '../../constant/Routes';
 
 const mockData = [
     {

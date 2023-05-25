@@ -32,15 +32,15 @@ export const borderRadius = {
 };
 
 export const fontWeight = {
-    thin: '100',
-    ultraLight: '200',
-    light: '300',
-    regular: '400',
-    medium: '500',
-    semiBold: '600',
-    heavy: '800',
-    bold: 'bold',
-    normal: 'normal',
+    thin: "100",
+    ultraLight: "200",
+    light: "300",
+    regular: "400",
+    medium: "500",
+    semiBold: "600",
+    heavy: "800",
+    bold: "bold",
+    normal: "normal",
 };
 
 export const lightPalette = {
