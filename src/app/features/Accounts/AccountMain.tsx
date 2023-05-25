@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, Text, View, FlatList, RefreshControl } from 'react-native'
 import React from 'react'
 import { Card } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -13,6 +13,16 @@ const mockData: [string: any] = [
   { 'aName': 'Hamiltom Knight Associates Ltd - 372161', 'aType': 'Investment ISA', 'aNumber': 'SHEX729304', 'totalValue': 4745.71, 'cashAvailableToInvest': 3378.21 }];
 
 export default function AccountMain({ navigation }) {
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
 
   function valueItem(title: string, value: string) {
     return (
@@ -73,7 +83,12 @@ export default function AccountMain({ navigation }) {
         renderItem={
           ({ item }) =>
             listItem(item)
-        } ListFooterComponent={() => listFooter()}>
+        } 
+        ListFooterComponent={() => listFooter()}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+        >
       </FlatList>
     </View>
   )
