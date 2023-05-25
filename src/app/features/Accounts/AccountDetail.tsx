@@ -119,7 +119,7 @@ export default function AccountDetail({ route, navigation }) {
     }
 
     return (
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false}>
             <View style={{ flexDirection: 'row' }}>
                 <View style={[styles.scrollContent, {width: layout.width}]}>
                     {titleView()}
