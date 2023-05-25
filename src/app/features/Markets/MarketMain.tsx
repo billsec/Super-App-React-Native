@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View, useWindowDimensions, ColorValue } from 'react-native';
-import { Divider, List } from 'react-native-paper';
-import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import { Divider } from 'react-native-paper';
+import { TabView, TabBar } from 'react-native-tab-view';
 
 import { LightTheme, spacing, fontSize, fontWeight } from './../../Theme';
 import Routes from '../../constant/Routes';
@@ -74,13 +74,6 @@ export default function MarketMain({ navigation }) {
       </View>
     );
   }
-
-  // const renderScene = SceneMap({
-  //   UK: marketView(0),
-  //   Europe: MarketView(1),
-  //   US: MarketView(2),
-  //   Asia: MarketView(3),
-  // });
 
   const renderScene = ({ route }) => {
     switch (route.key) {

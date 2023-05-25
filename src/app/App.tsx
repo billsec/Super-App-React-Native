@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { LogBox, TouchableOpacity } from 'react-native';
 
 import Routes from './constant/Routes';
 import { LightTheme, DarkTheme, spacing } from './Theme';
@@ -13,12 +14,12 @@ import Analysis from './features/Accounts/Analysis';
 import MarketMain from './features/Markets/MarketMain';
 import MarketDetail from './features/Markets/MarketDetail';
 import Login from './features/Authentication/Login';
-import { LogBox, TouchableOpacity } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function App() {
+  LogBox.ignoreAllLogs();
   let isLoggedIn = true;
 
   function Accounts() {
@@ -71,8 +72,6 @@ function App() {
       </Stack.Navigator>
     );
   }
-
-  LogBox.ignoreAllLogs();
 
   return (
     <NavigationContainer>
