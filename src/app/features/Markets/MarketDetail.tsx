@@ -20,12 +20,12 @@ export default function MarketDetail({ route }) {
     { key: 'fiveYear', title: '5Y' },
   ]);
 
-  const mockDataLabel = ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"];
+  const mockDataLabel = ["09:20", "10:25", "11:25", "01:15", "02:15", "03:15"];
 
   function getRandomArr(n: number, value: string) {
     const priceArr = value.match(/\d+\.\d+/g)
     const roundMaxPrice = Math.round(priceArr[0])
-    const roundMinPrice = Math.round(priceArr[0] * 0.9)
+    const roundMinPrice = Math.round(priceArr[0] * 0.99)
     let data: number[] = []
     for (let i = 0; i < n; i++) {
       data[i] = Math.random() * (roundMaxPrice - roundMinPrice) + roundMinPrice
@@ -88,7 +88,7 @@ export default function MarketDetail({ route }) {
           labels: mockDataLabel,
           datasets: [
             {
-              data: getRandomArr(12, price)
+              data: getRandomArr(48, price)
             }
           ]
         }}
