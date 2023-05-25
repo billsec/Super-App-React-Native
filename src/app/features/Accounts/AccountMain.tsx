@@ -62,12 +62,7 @@ export default function AccountMain({ navigation }) {
   const listFooter = () => {
     return (
       <View style={{ marginVertical: spacing.smaller, marginHorizontal: spacing.small }}>
-        <TouchableOpacity onPress={() => navigation.push(Routes.AccountDetail, {
-          totalValue: item['totalValue'],
-          aName: item['aName'],
-          aNumber: item['aNumber'],
-          cashAvailable: item['cashAvailableToInvest'],
-        })} style={{ borderWidth: 1, borderColor: LightTheme.lightPalette.divider, padding: spacing.small }}>
+        <TouchableOpacity style={{ borderWidth: 1, borderColor: LightTheme.lightPalette.divider, padding: spacing.small }}>
           <View style={{ gap: spacing.small }}>
               <Text style={styles.footerText}>Start planning for retirement with a Super SIPP</Text>
               <Text style={{ alignSelf: 'flex-start', color: LightTheme.lightPalette.mainGray, backgroundColor: LightTheme.lightPalette.mainGreen, padding: spacing.small }}>View your options here</Text>

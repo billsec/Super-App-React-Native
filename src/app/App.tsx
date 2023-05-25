@@ -87,15 +87,15 @@ function App() {
         <Tab.Group screenOptions={{ headerShown: false }}>
           <Tab.Screen name={Routes.AccountsTab} component={Accounts} options={{
             tabBarLabel: 'Accounts',
-            tabBarIcon: () => (
-              <Icon name="home" size={24} />
+            tabBarIcon: ({focused}) => (
+              <Icon name="home" size={24} color={focused ?  LightTheme.lightPalette.mainBlue : LightTheme.lightPalette.primaryText} />
             ),
           }}
           />
           <Tab.Screen name={Routes.MarketsTab} component={Markets} options={{
             tabBarLabel: 'Markets',
-            tabBarIcon: () => (
-              <Icon name="linechart" size={24} />
+            tabBarIcon: ({focused}) => (
+              <Icon name="linechart" size={24} color={focused ?  LightTheme.lightPalette.mainBlue : LightTheme.lightPalette.primaryText} />
             ),
           }}
           />
