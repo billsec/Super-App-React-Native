@@ -57,6 +57,7 @@ export const lightPalette = {
     divider: '#CCCCCC',
     downRed: '#DF1515',
     upGreen: '#368727',
+    logoRed: '#B02B28'
 }
 
 export const dartPalette = {

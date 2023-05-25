@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, RefreshControl } from 'react-native'
+import { StyleSheet, Text, View, FlatList, RefreshControl, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Card } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -36,27 +36,25 @@ export default function AccountMain({ navigation }) {
   const listItem = (item: [string: any]) => {
     return (
       <View style={{ marginVertical: spacing.smaller, marginHorizontal: spacing.small }}>
-        <Card onPress={() => navigation.push(Routes.AccountDetail, {
+        <TouchableOpacity onPress={() => navigation.push(Routes.AccountDetail, {
           totalValue: item['totalValue'],
           aName: item['aName'],
           aNumber: item['aNumber'],
           cashAvailable: item['cashAvailableToInvest'],
-        })} contentStyle={{ backgroundColor: LightTheme.lightPalette.background }}>
-          <Card.Content style={{ borderColor: LightTheme.lightPalette.secondaryText, borderRadius: borderRadius.micro }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-              <View style={{ gap: spacing.smaller }}>
-                <Text style={styles.aNameText}>{item['aName']}</Text>
-                <Text style={styles.aTypeText}>{item['aType']}</Text>
-                <Text style={styles.aNumberText}>{item['aNumber']}</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'stretch', marginTop: spacing.small }}>
-                  {valueItem('Total Value', currencySymbol + item['totalValue'])}
-                  {valueItem('Cash available to invest', currencySymbol + item['cashAvailableToInvest'])}
-                </View>
+        })} style={{ borderWidth: 1, borderColor: LightTheme.lightPalette.divider, padding: spacing.small }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <View style={{ gap: spacing.smaller }}>
+              <Text style={styles.aNameText}>{item['aName']}</Text>
+              <Text style={styles.aTypeText}>{item['aType']}</Text>
+              <Text style={styles.aNumberText}>{item['aNumber']}</Text>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'stretch', marginTop: spacing.small }}>
+                {valueItem('Total Value', currencySymbol + item['totalValue'])}
+                {valueItem('Cash available to invest', currencySymbol + item['cashAvailableToInvest'])}
               </View>
-              <Icon name="right" size={24} color={LightTheme.lightPalette.secondaryText} />
             </View>
-          </Card.Content>
-        </Card>
+            <Icon name="right" size={24} color={LightTheme.lightPalette.secondaryText} />
+          </View>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -64,31 +62,43 @@ export default function AccountMain({ navigation }) {
   const listFooter = () => {
     return (
       <View style={{ marginVertical: spacing.smaller, marginHorizontal: spacing.small }}>
-        <Card contentStyle={{ backgroundColor: LightTheme.lightPalette.background }}>
-          <Card.Content style={{ borderColor: LightTheme.lightPalette.secondaryText, borderRadius: borderRadius.micro }}>
-            <View style={{ gap: spacing.small }}>
+        <TouchableOpacity onPress={() => navigation.push(Routes.AccountDetail, {
+          totalValue: item['totalValue'],
+          aName: item['aName'],
+          aNumber: item['aNumber'],
+          cashAvailable: item['cashAvailableToInvest'],
+        })} style={{ borderWidth: 1, borderColor: LightTheme.lightPalette.divider, padding: spacing.small }}>
+          <View style={{ gap: spacing.small }}>
               <Text style={styles.footerText}>Start planning for retirement with a Super SIPP</Text>
               <Text style={{ alignSelf: 'flex-start', color: LightTheme.lightPalette.mainGray, backgroundColor: LightTheme.lightPalette.mainGreen, padding: spacing.small }}>View your options here</Text>
             </View>
-          </Card.Content>
-        </Card >
-      </View >
+        </TouchableOpacity>
+      </View>
     )
+  }
 
+  const headerView = () => {
+    return (
+      <View style={{backgroundColor: LightTheme.lightPalette.mainGray}}>
+        <Text style={{color: LightTheme.lightPalette.revertColorText, fontSize: fontSize.lg, paddingHorizontal: spacing.small, paddingVertical: spacing.small, fontWeight: fontWeight.semiBold}}>All accounts</Text>
+
+      </View>
+    )
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: LightTheme.lightPalette.background, paddingVertical: spacing.small }} >
+    <View style={{ flex: 1, backgroundColor: LightTheme.lightPalette.background}} >
       <FlatList data={mockData}
         renderItem={
           ({ item }) =>
             listItem(item)
-        } 
+        }
         ListFooterComponent={() => listFooter()}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
-        >
+        style={{paddingVertical: spacing.small }}
+      >
       </FlatList>
     </View>
   )

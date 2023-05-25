@@ -28,15 +28,18 @@ function App() {
         {isLoggedIn ? (
           <Stack.Group>
             <Stack.Screen name={Routes.Accounts} component={AccountMain} options={() => ({
-              headerBackTitleVisible: false, headerRight: () => (
+              headerBackTitleVisible: false, 
+              headerRight: () => (
                 <TouchableOpacity style={{ flexDirection: 'row-reverse', gap: spacing.smaller }}>
                   <Icon name="user" size={24} />
                   <Icon name="search1" size={24} />
                   <Icon name="menufold" size={24} />
                 </TouchableOpacity>
-              ), headerLeft: () => (
+              ), 
+              headerLeft: () => (
                 <Icon name="github" size={24} color={LightTheme.lightPalette.mainBlue} />
               ),
+              headerTitle: 'All Accounts'
             })} />
             <Stack.Screen name={Routes.AccountDetail} component={AccountDetail} options={() => ({ headerBackTitleVisible: false })} />
             <Stack.Screen name={Routes.Analysis} component={Analysis} />
