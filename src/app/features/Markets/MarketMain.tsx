@@ -36,7 +36,12 @@ export default function MarketMain({ navigation }) {
     const color: ColorValue = delta > 0 ? LightTheme.lightPalette.upGreen : LightTheme.lightPalette.downRed;
     return (
       
-      <TouchableOpacity onPress={() => navigation.navigate(Routes.MarketsDetail)}>
+      <TouchableOpacity onPress={() => navigation.navigate(Routes.MarketsDetail, {
+        title: title,
+        price: price,
+        delta: delta,
+        dPercent: dPercent,
+      })}>
         <View style={{ alignItems: 'center', gap: spacing.small, margin: spacing.medium }}>
           <Text style={styles.titleText}>{title}</Text>
           <Text style={styles.priceText}>{price}</Text>

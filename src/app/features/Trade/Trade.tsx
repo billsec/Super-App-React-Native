@@ -21,7 +21,7 @@ export default function Trade() {
 
   return (
     <View style={{ backgroundColor: LightTheme.lightPalette.background, padding: spacing.small }}>
-      <Text style={{ fontSize: fontSize.xxxl, fontWeight: fontWeight.ultraLight }}>Buy, Sell, Swich</Text>
+      <Text style={{ fontSize: fontSize.xxxl, fontWeight: fontWeight.ultraLight }}>Buy, Sell, Switch</Text>
       <TouchableOpacity style={{ paddingHorizontal: spacing.small, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderWidth: 1, borderColor: LightTheme.lightPalette.divider, paddingVertical: spacing.large, marginVertical: spacing.large }}>
         <Text style={{ color: LightTheme.lightPalette.mainBlue, fontWeight: fontWeight.regular }}>Select the account you'd like to use</Text>
         <Icon name='chevron-down' size={22} color={LightTheme.lightPalette.mainBlue}></Icon>

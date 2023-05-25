@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, useWindowDimensions, ColorValue } from 'react-native'
 import React from 'react'
 import { Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -7,8 +7,9 @@ import { LineChart } from 'react-native-chart-kit';
 
 import { LightTheme, spacing, fontSize, fontWeight } from './../../Theme';
 
-export default function MarketDetail() {
+export default function MarketDetail({ route }) {
   const layout = useWindowDimensions();
+  const {title, price, delta, dPercent} = route.params
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: 'oneDay', title: '1D' },
@@ -21,15 +22,27 @@ export default function MarketDetail() {
 
   const mockDataLabel = ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"];
 
-  function getRandomArr(n: number) {
+  function getRandomArr(n: number, value: string) {
+    const priceArr = value.match(/\d+\.\d+/g)
+    const roundMaxPrice = Math.round(priceArr[0])
+    const roundMinPrice = Math.round(priceArr[0] * 0.9)
     let data: number[] = []
     for (let i = 0; i < n; i++) {
-      data[i] = Math.random() * 12000
+      data[i] = Math.random() * (roundMaxPrice - roundMinPrice) + roundMinPrice
     }
     return data
   }
 
-  const indexRow = (title: string, price: number, delta: number) => {
+  const displayTime = () => {
+    const nowDate = new Date()
+    const hourString = nowDate.getHours()
+    const minString = nowDate.getMinutes()
+    const dateString = nowDate.toLocaleDateString()
+    return hourString + ':' + minString + ' GMT on ' + dateString
+}
+
+  const indexRow = (title: string, price: string, delta: string, dPercent: string) => {
+    const color: ColorValue = delta > 0 ? LightTheme.lightPalette.upGreen : LightTheme.lightPalette.downRed;
     return (
       <View>
         <View style={{ alignItems: 'center', gap: spacing.small, margin: spacing.large }}>
@@ -37,8 +50,8 @@ export default function MarketDetail() {
             <Text style={styles.titleText}>{title}</Text>
             <Icon name='chevron-down' size={22} color={LightTheme.lightPalette.mainBlue}></Icon>
           </View>
-          <Text style={styles.priceText}>{price + ' USD'}</Text>
-          <Text style={styles.deltaText}>{delta + ' (-0.17%)'}</Text>
+          <Text style={styles.priceText}>{price}</Text>
+          <Text style={[styles.deltaText, {color: color}]}>{delta + ' ' + dPercent + '%'}</Text>
         </View>
         <Divider />
       </View>
@@ -52,7 +65,7 @@ export default function MarketDetail() {
           <View style={styles.circle}></View>
           <Text style={styles.secondaryText}>Market closed</Text>
         </View>
-        <Text style={[styles.secondaryText, { flex: 1 }]}>Last updated at 16:00 on 10/05/23</Text>
+        <Text style={[styles.secondaryText, { flex: 1 }]}>{'Last updated at ' + displayTime()}</Text>
       </View>
     )
   }
@@ -61,7 +74,7 @@ export default function MarketDetail() {
     return (
       <View style={{ flexDirection: 'row', paddingVertical: spacing.medium, paddingHorizontal: spacing.small, justifyContent:'space-between', alignItems:'center' }}>
         <Text style={[styles.secondaryText, { flex: 1, fontWeight: fontWeight.bold }]}>Previous close</Text>
-        <Text style={[styles.secondaryText, { flex: 1 }]}>19867.58</Text>
+        <Text style={[styles.secondaryText, { flex: 1 }]}>{price}</Text>
       </View>
     )
   }
@@ -75,7 +88,7 @@ export default function MarketDetail() {
           labels: mockDataLabel,
           datasets: [
             {
-              data: getRandomArr(12)
+              data: getRandomArr(12, price)
             }
           ]
         }}
@@ -135,7 +148,7 @@ export default function MarketDetail() {
 
   return (
     <ScrollView style={{ backgroundColor: LightTheme.lightPalette.background }}>
-      {indexRow('NASDAQ', 12179.55, -77.36)}
+      {indexRow(title, price, delta, dPercent)}
       {timeRow()}
       <Divider></Divider>
       <Text style={{ paddingVertical: spacing.larger, alignSelf: 'center', fontSize: fontSize.xl, fontWeight: fontWeight.semiBold }}>Index price by chosen time period</Text>

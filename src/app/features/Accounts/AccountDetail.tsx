@@ -11,6 +11,14 @@ import Routes from '../../constant/Routes';
 export default function AccountDetail({ route, navigation }) {
     const currencySymbol = '$';
     const layout = useWindowDimensions();
+
+    const displayTime = () => {
+        const nowDate = new Date()
+        const hourString = nowDate.getHours()
+        const minString = nowDate.getMinutes()
+        const dateString = nowDate.toLocaleDateString()
+        return hourString + ':' + minString + ' GMT on ' + dateString
+    }
     
     const { totalValue, aName, aNumber, cashAvailable } = route.params;
 
@@ -18,7 +26,7 @@ export default function AccountDetail({ route, navigation }) {
         return (
             <View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={[styles.lightGrayText, { flex: 2, padding: spacing.small, lineHeight: spacing.small }]}>Price and valuations update at 14:35 GMT on 02/11/2020</Text>
+                    <Text style={[styles.lightGrayText, { flex: 2, padding: spacing.small, lineHeight: spacing.small }]}>{'Price and valuations update at ' + displayTime()}</Text>
                     <TouchableOpacity style={{ flexDirection: 'row', flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.smaller }}>
                         <Text style={styles.whiteXSText}>Refresh</Text>
                         <Icon name="refresh" size={18} color={LightTheme.lightPalette.revertColorText} />
